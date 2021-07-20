@@ -16,8 +16,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'homes#top'
   get "about" => "homes#about"
-  
-  resources :items
+
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
 
   namespace :manager do
     resources :genres
