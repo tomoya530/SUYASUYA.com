@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # devise_for :admins, controllers: {
   # sessions:      'admin/sessions',
   # passwords:     'admin/passwords',
@@ -21,6 +20,8 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
+
+  resources :users, only: [:show, :edit, :update]
 
   namespace :manager do
     resources :genres

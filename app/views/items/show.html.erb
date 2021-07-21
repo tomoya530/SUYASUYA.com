@@ -44,7 +44,9 @@
   </div>
   <div class ="row">
    <div class ="col">
+    <% if @item.user == current_user %>
   <td><%= link_to "削除する", item_path(@item.id), class: "btn btn-danger", method: :delete, data: { confirm: '削除しますか？' } %></td>
+    <% end %>
    </div>
   </div>
 </div>
@@ -73,7 +75,9 @@
   <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
   <% if comment.user == current_user %>
   <div class="comment-delete">
+    <% if @item.user == current_user %>
     <%= link_to "削除", item_comment_path(comment.item, comment), method: :delete %>
+    <% end %>
   </div>
   <% end %>
 <% end %>
