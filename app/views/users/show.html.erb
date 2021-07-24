@@ -13,6 +13,17 @@
   <% end %>
   <p>商品名：<%= item.name %></p>
   <p>説明：<%= item.description %></p>
+  <div class="item-evaluation" data-score="<%= item.evaluation %>"></div>
   <p>ユーザーネーム：<%= item.user.name %></p>
 </div>
 <% end %>
+
+  <script>
+  $('.item-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+  </script>

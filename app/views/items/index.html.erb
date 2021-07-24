@@ -1,11 +1,35 @@
-<h2>商品一覧</h2>
-
+<h2>投稿一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>評価</th>
+    </tr>
+  </thead>
+  <tbody>
  <% @items.each do |item| %>
-  <td><%= attachment_image_tag item, :image, size: "100x100" %></td>
-  <td><%= link_to item.name , item_path(item.id), class:"border:solid 1px " %></td>
-  <td><%= item.genre.name %></td>
-  <td><%= item.description %></td>
-  <p>ユーザーネーム：<%= item.user.name %></p>
+  <tr>
+  <td><%= attachment_image_tag item, :image, size: "100x100" %>
+  <%= link_to item.name , item_path(item.id), class:"border:solid 1px " %>
+  <%= item.genre.name %>
+  <%= item.description %>
+  <%= attachment_image_tag item.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+  <p>ユーザーネーム：<%= link_to item.user.name , user_path(item.user.id) %></p>
   <p><%= link_to "#{item.favorites.count} いいね", item_path(item.id) %></p>
   <p><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></p>
+  </td>
+  <td class="item-evaluation" data-score="<%= item.evaluation %>">
+  </tr>
   <% end %>
+ </tbody>
+</table>
+
+  <script>
+  $('.item-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+  </script>
