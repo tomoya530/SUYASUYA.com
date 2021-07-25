@@ -59,46 +59,34 @@
    </div>
   </div>
 </div>
-
-<% if @item.favorited_by?(current_user) %>
-    <p>
-      <%= link_to item_favorites_path(@item), method: :delete, remote: true do %>
-        ♥<%= @item.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to item_favorites_path(@item), method: :post, remote: true do %>
-        ♡<%= @item.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-
-
+ <div id="likes_buttons<%= @item.id %>">
+    <%= render partial: 'favorites/favorite', item: @item %>
+ </div>
 <div class="comments">
 <p>コメント件数：<%= @item.comments.count %></p>
 
 <% @item.comments.each do |comment| %>
-  <p><%= image_tag('no_image.jpg') %></p>
+  <%= attachment_image_tag comment.user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
   <%= comment.user.name %>
   <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
   <% if comment.user == current_user %>
   <div class="comment-delete">
-    <% if @item.user == current_user %>
     <%= link_to "削除", item_comment_path(comment.item, comment), method: :delete %>
-    <% end %>
   </div>
   <% end %>
 <% end %>
 </div>
+
 <div class="new-comment">
+ <% if user_signed_in? %>
 <%= form_with(model:[@item, @comment], local: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちら" %>
   <%= f.submit "送信する" %>
 <% end %>
+<% end %>
 </div>
 
-<script>
+ <script>
   $('.item-evaluation').raty({
     readOnly: true,
     score: function() {
@@ -106,4 +94,4 @@
     },
     path: '/assets/'
   });
-  </script>
+ </script>
