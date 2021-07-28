@@ -14,3 +14,25 @@
  *= require_self
  */
  @import "bootstrap";
+
+ h1{
+   font-family: 'Galada', cursive;
+ }
+
+ html, body {
+  font-family: "Noto Sans JP";
+ }
+
+ footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #848282;
+}
+
+.footer-text {
+  color: #fff;
+}

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+before_action :authenticate_user!,except: [:top]
   def create
     item = Item.find(params[:item_id])
     comment = current_user.comments.new(comment_params)
