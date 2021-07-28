@@ -1,8 +1,13 @@
 class RelationshipsController < ApplicationController
+before_action :authenticate_user!,except: [:top]
 
    def create
-    current_user.follow(params[:user_id])
-    redirect_to request.referer
+    if
+     current_user.id == User.find(params[:user_id])
+    else
+     current_user.follow(params[:user_id])
+     redirect_to request.referer
+    end
    end
 
   def destroy
