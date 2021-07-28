@@ -5,8 +5,7 @@
       <%= attachment_image_tag @item, :image, size: "100x100", format: 'jpeg' %>
     </div>
   </div>
-<%= form_with model: @item, url: item_path(@item.id), method: :patch, local:true do |f| %>
-
+   <%= form_with model: @item, url: item_path(@item.id), method: :patch, local:true do |f| %>
       <div class ="row">
        <div class ="col">
         <h4>商品画像</h4>
@@ -15,7 +14,6 @@
         <%= f.attachment_field :image %>
        </div>
       </div>
-
      <div class ="row">
        <div class ="col">
         <h4>商品名</h4>
@@ -24,7 +22,17 @@
         <%= f.text_field :name %>
        </div>
     </div>
-
+    <div class ="row">
+     <div class ="col">
+      <h4>評価</h4>
+     </div>
+    <div class ="col">
+       <div id="evaluate_stars">
+       <div class="actions">
+       </div>
+      </div>
+    </div>
+    </div>
     <div class ="row">
        <div class ="col">
         <h4>説明</h4>
@@ -33,7 +41,6 @@
         <%= f.text_field :description %>
        </div>
     </div>
-
     <div class ="row">
        <div class ="col">
         <h4>ジャンル</h4>
@@ -42,7 +49,6 @@
         <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
        </div>
     </div>
-
     <div class ="row">
        <div class ="col">
         <h4>税抜価格</h4>
@@ -51,13 +57,21 @@
         <%= f.text_field :price %>
        </div>
     </div>
-
    <div class ="row">
     <div class ="col">
-     <%= f.submit "変更を保存", class:"btn btn-success" %>
+     <%= f.submit "変更を保存", class:"btn btn-dark" %>
     </div>
    </div>
-<% end %>
+    <% end %>
    </div>
   </div>
  </div>
+
+<script>
+  $('#evaluate_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'item[evaluation]' //登録するモデル名とカラム名を記述
+  });
+</script>

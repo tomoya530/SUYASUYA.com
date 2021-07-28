@@ -1,8 +1,41 @@
-<h2>商品一覧</h2>
+ <div class="container">
+  <div class="row">
+   <% @items.each do |item| %>
+    <div class="card border-dark mb-3 mt-3 mx-5" style="max-width: 660px">
+     <div class="row no-gutters">
+       <div class="col-md-6 my-auto">
+        <%= link_to item_path(item.id) do %>
+      　 <%= attachment_image_tag item, :image, size: "200x200" %>
+      　<% end %>
+       </div>
+       <div class="col-md-6">
+        <div class="card-body text-center">
+          <li class="list-group-item">
+           <%= attachment_image_tag item.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+           <%= link_to item.user.name , user_path(item.user.id) %>
+          </li>
+          <li class="list-group-item"><%= link_to item.name , item_path(item.id), class:"border:solid 1px " %></li>
+          <li class="list-group-item"><%= item.genre.name %></li>
+          <li class="list-group-item"><p class="item-evaluation" data-score="<%= item.evaluation %>"></li>
+          <li class="list-group-item"><%= item.description %></li>
+          <li class="list-group-item">
+          <p><%= link_to "#{item.favorites.count} いいね", item_path(item.id) %></p>
+          <p><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></p>
+          </li>
+        </div>
+       </div>
+     </div>
+    </div>
+    <% end %>
+   </div>
+ </div>
 
- <% @items.each do |item| %>
-  <td><%= attachment_image_tag item, :image, size: "100x100" %></td>
-  <td><%= link_to item.name , item_path(item.id), class:"border:solid 1px " %></td>
-  <td><%= item.genre.name %></td>
-  <td><%= item.description %></td>
-  <% end %>
+  <script>
+  $('.item-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+  </script>

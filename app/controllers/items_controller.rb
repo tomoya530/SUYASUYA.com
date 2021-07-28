@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+before_action :authenticate_user!,except: [:top]
   def index
     @items = Item.all
   end
@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -44,7 +45,7 @@ class ItemsController < ApplicationController
    private
 
   def item_params
-    params.require(:item).permit(:image, :name, :description, :price, :genre_id)
+    params.require(:item).permit(:image, :name, :description, :price, :genre_id, :evaluation)
   end
 
 end

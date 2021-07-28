@@ -1,0 +1,14 @@
+<div class="container mt-3">
+   <h2>プロフィール編集</h2>
+    <div class="row mt-3">
+     <%= form_with model:@user, local:true do |f| %>
+      <div style="margin : 20px 3px 2px 3px"><label for="inputName">Name</label>
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></div>
+      <div style="margin : 20px 3px 2px 3px"><%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg"%>
+      <label for="inputImage">ProfileImage</label></div>
+      <div style="margin : 20px 3px 2px 3px"><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></div>
+      <div style="margin : 20px 3px 2px 3px"><%= f.submit "変更を保存" %></div>
+　　<% end %>
+　</div>
+</div>
+
