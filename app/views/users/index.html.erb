@@ -31,14 +31,14 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title"><%= user.name %></h5>
-            <p class="card-text"><%= link_to "Follow:", user_followings_path(@user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= @user.followings.count %></p>
-            <p class="card-text"><%= link_to "Follower:", user_followers_path(@user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= @user.followers.count %></p>
+            <p class="card-text"><%= link_to "Follow:", user_followings_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= user.followings.count %></p>
+            <p class="card-text"><%= link_to "Follower:", user_followers_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= user.followers.count %></p>
             <p class="card-text">
-              <% if @user.id != current_user.id %>
-                <% if current_user.following?(@user) %>
-                <%= link_to "Unfollow", user_relationships_path(@user.id), class:"btn btn-dark", method: :delete %>
+              <% if user.id != current_user.id %>
+                <% if current_user.following?(user) %>
+                <%= link_to "Unfollow", user_relationships_path(user.id), class:"btn btn-dark", method: :delete %>
                 <% else %>
-                <%= link_to "Follow", user_relationships_path(@user.id), class:"btn btn-secondary", method: :post %>
+                <%= link_to "Follow", user_relationships_path(user.id), class:"btn btn-secondary", method: :post %>
                 <% end %>
               <% end %>
             </p>
