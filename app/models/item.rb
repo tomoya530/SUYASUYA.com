@@ -9,6 +9,11 @@ class Item < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
 
+  validates :name, presence: true
+  validates :image_id, presence: true
+  validates :description, presence: true
+  validates :evaluation, presence: true
+
   attachment :image
 
 end
