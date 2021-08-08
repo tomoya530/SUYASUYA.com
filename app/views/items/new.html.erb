@@ -1,4 +1,12 @@
 <div class="container">
+ <div>
+ <% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <% @item.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+ </div>
+<% end %>
  <h1>新規登録</h1>
   <div class="row">
    <%= form_with model: @item, local:true do |f| %>
