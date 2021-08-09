@@ -11,34 +11,34 @@
   <div class="row">
    <%= form_with model: @item, local:true do |f| %>
    <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <h3>投稿画像</h3>
      </div>
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <%= f.attachment_field :image %>
      </div>
     </div>
     <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <h3>商品名</h3>
      </div>
-     <div class ="col">
+     <div class ="col bg-white text-dark">
      <%= f.text_field :name, placeholder: "商品名" %>
      </div>
     </div>
     <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <h3>商品説明</h3>
      </div>
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <%= f.text_field :description,  :size => "80x80", placeholder: "ここに説明文を記述します" %>
      </div>
     </div>
     <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
     <h3>評価</h3>
      </div>
-     <div class ="col">
+     <div class ="col bg-white text-dark">
     <div id="evaluate_stars">
     <div class="actions">
      </div>
@@ -46,15 +46,15 @@
      </div>
      </div>
     <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <h3>ジャンル</h3>
      </div>
-     <div class ="col">
+     <div class ="col bg-white text-dark">
       <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
      </div>
     </div>
     <div class ="row">
-     <div class ="col">
+     <div class ="col bg-white text-dark">
      <%= f.submit '新規登録', class:"btn btn-outline-dark" %>
      </div>
     </div>
