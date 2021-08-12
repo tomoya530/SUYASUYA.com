@@ -7,3 +7,14 @@ body {
   background-color: #464646;
   z-index: 0;
 }
+
+// body::before{
+//   background: inherit;
+//   content: '';
+//   filter: blur(5px);
+//   position: absolute;
+//   top: -5px;
+//   right: -5px;
+//   bottom: -5px;
+//   left: -5px;
+// }
