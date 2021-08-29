@@ -11,8 +11,7 @@
        <div class="col-md-6">
         <div class="card-body text-center">
           <li class="list-group-item">
-           <%= attachment_image_tag item.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
-           <%= link_to item.user.name , user_path(item.user.id) %>
+           <%= attachment_image_tag item.user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>　　　<%= link_to item.user.name , user_path(item.user.id) %>
           </li>
           <li class="list-group-item"><%= link_to item.name , item_path(item.id), class:"border:solid 1px " %></li>
           <li class="list-group-item"><%= item.genre.name %></li>
