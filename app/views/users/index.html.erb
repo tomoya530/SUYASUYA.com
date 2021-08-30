@@ -4,9 +4,8 @@
     <div class="col-lg-4">
       <%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpeg', fallback: "no_image.jpg" %>
        <h2 class="profile-name text-align my-3"><%= @user.name %></h2>
-      <div class="my-3"><%= link_to "Follow:", user_followings_path(@user.id), class:"rounded-left border border-dark bg-light text-dark my-3", method: :get %><%= @user.followings.count %></div>
-      <div class="my-3"><%= link_to "Follower:", user_followers_path(@user.id), class:"rounded-left border border-dark bg-light text-dark my-3", method: :get %>
-      <%= @user.followers.count %>
+      <div class="my-3"><%= link_to "Follow:", user_followings_path(@user.id), class:"rounded-left border border-dark bg-light text-dark my-3", method: :get %>　<%= @user.followings.count %></div>
+      <div class="my-3"><%= link_to "Follower:", user_followers_path(@user.id), class:"rounded-left border border-dark bg-light text-dark my-3", method: :get %>　<%= @user.followers.count %>
       </div>
       <% if @user.id != current_user.id %>
         <% if current_user.following?(@user) %>
@@ -31,8 +30,8 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title"><%= user.name %></h5>
-            <p class="card-text"><%= link_to "Follow:", user_followings_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= user.followings.count %></p>
-            <p class="card-text"><%= link_to "Follower:", user_followers_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %><%= user.followers.count %></p>
+            <p class="card-text"><%= link_to "Follow:", user_followings_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %>　<%= user.followings.count %></p>
+            <p class="card-text"><%= link_to "Follower:", user_followers_path(user.id), class:"rounded-left border border-dark bg-light text-dark", method: :get %>　<%= user.followers.count %></p>
             <p class="card-text">
               <% if user.id != current_user.id %>
                 <% if current_user.following?(user) %>
