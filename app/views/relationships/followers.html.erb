@@ -3,7 +3,7 @@
    <h2>Follower Users</h2>
     <% if @users.exists? %>
     <% @users.each do |user| %>
-    <div class="card mb-3" style="max-width: 540px; max-height: 150px;">
+    <div class="card mb-3 mx-auto" style="width: 70%">
       <div class="row g-0">
         <div class="col-md-4">
           <%= attachment_image_tag user, :profile_image, size: "100x100", fallback: "no_image.jpg" %>

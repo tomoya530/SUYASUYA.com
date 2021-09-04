@@ -1,9 +1,10 @@
-body {
-  background-image: image-url('bed.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
-  z-index: 0;
+
+
+.blur{
+  -ms-filter: blur(6px);
+  filter: blur(6px);
+}
+
+.text1{
+  text-shadow:0 5px 5px #808080;
 }

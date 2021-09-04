@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class ="row">
-   <div class ="col mt-1">
+   <div class ="col mt-1 bg-white text-dark">
     <h4>品名</h4>
    </div>
    <div class ="col">
@@ -14,7 +14,7 @@
    </div>
   </div>
   <div class ="row">
-   <div class ="col mt-1">
+   <div class ="col mt-1 bg-white text-dark">
     <h4>評価</h4>
    </div>
    <div class ="col">
@@ -22,7 +22,7 @@
    </div>
   </div>
   <div class ="row">
-   <div class ="col mt-1">
+   <div class ="col mt-1 bg-white text-dark">
     <h4>品物説明</h4>
    </div>
    <div class ="col">
@@ -30,7 +30,7 @@
    </div>
   </div>
   <div class ="row">
-   <div class ="col mt-1">
+   <div class ="col mt-1 bg-white text-dark">
     <h4>ジャンル</h4>
    </div>
    <div class ="col">
@@ -45,46 +45,55 @@
   </div>
   <div class ="row">
    <div class ="col mt-3">
-  <td><%= link_to "削除する", item_path(@item.id), class: "btn btn-outline-dark", method: :delete, data: { confirm: '削除しますか？' } %></td>
-    <% end %>
+    <%= link_to "削除する", item_path(@item.id), class: "btn btn-outline-dark", method: :delete, data: { confirm: '削除しますか？' } %>
    </div>
   </div>
-
- <div id="likes_buttons<%= @item.id %>">
+   <% end %>
+  <div class ="row">
+   <div class ="col mt-3">
+    <div id="likes_buttons<%= @item.id %>">
     <%= render partial: 'favorites/favorite', item: @item %>
- </div>
-
- <div class="comments">
-  <p>コメント件数：<%= @item.comments.count %></p>
-   <% @item.comments.each do |comment| %>
-   <div class="bg-light text-dark border border-dark mt-1">
-    <%= attachment_image_tag comment.user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <%= comment.comment %>
-    <% if comment.user == current_user %>
-    <%= link_to "削除", item_comment_path(comment.item, comment), class: "btn btn-outline-dark", method: :delete %>
+    </div>
+   </div>
+  </div>
+  <div class ="row">
+   <div class ="col mt-3">
+    <div class="comments">
+     <p>コメント件数：<%= @item.comments.count %></p>
+      <% @item.comments.each do |comment| %>
+      <div class="bg-light text-dark border border-dark mt-1">
+       <%= attachment_image_tag comment.user, :profile_image, size: "60x60", fallback: "no_image.jpg" %>
+       <%= comment.user.name %>
+       <%= comment.created_at.strftime('%Y/%m/%d') %>
+       <%= comment.comment %>
+       <% if comment.user == current_user %>
+       <%= link_to "削除", item_comment_path(comment.item, comment), class: "btn btn-outline-dark", method: :delete %>
+       <% end %>
+       </div>
+      <% end %>
+    </div>
+   </div>
+  </div>
+  <div class ="row">
+   <div class ="col mt-3">
+    <div class="new-comment mt-1">
+     <% if user_signed_in? %>
+      <%= form_with(model:[@item, @comment], local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちら" %>
+      <%= f.submit "送信する" %>
+      <% end %>
     <% end %>
     </div>
-   <% end %>
- </div>
-
- <div class="new-comment mt-1">
-  <% if user_signed_in? %>
-   <%= form_with(model:[@item, @comment], local: true) do |f| %>
-   <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちら" %>
-   <%= f.submit "送信する" %>
-   <% end %>
- <% end %>
- </div>
+   </div>
+  </div>
 </div>
-
- <script>
+  <script>
   $('.item-evaluation').raty({
     readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
     score: function() {
       return $(this).attr('data-score');
-    },
-    path: '/assets/'
+    }
   });
- </script>
+  </script>

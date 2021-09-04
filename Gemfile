@@ -76,3 +76,5 @@ gem 'jquery-rails'
 
 gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
+
+gem 'ast', '~> 2.4', '>= 2.4.2'
