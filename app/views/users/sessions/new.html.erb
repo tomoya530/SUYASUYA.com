@@ -4,7 +4,7 @@
     <h2>Log in</h2>
 
     <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <div class="field text-center">
+    <div class="field text-center mt-3">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
@@ -21,7 +21,7 @@
       </div>
     <% end %>
 
-    <div class="actions text-center mb-3">
+    <div class="actions text-center mb-3 mt-3">
       <%= f.submit "Log in" %>
     </div>
     <% end %>
